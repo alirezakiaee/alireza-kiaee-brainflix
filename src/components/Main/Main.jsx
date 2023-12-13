@@ -1,49 +1,56 @@
-import { Component } from 'react'
-import VideoPlayer from '../VideoPlayer/VideoPlayer'
-import VideoDetail from '../VideoDetail/VideoDetail'
-import Comment from '../Comment/Comment'
-import VideoList from '../VideoList/VideoList'
-import Dataset from '../../data/video-details.json'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
+import VideoDetail from '../VideoDetail/VideoDetail';
+import Comment from '../Comment/Comment';
+import VideoList from '../VideoList/VideoList';
+import Dataset from '../../data/video-details.json';
 
-import './Main.scss'
+import './Main.scss';
 
+const Main = () => {
+    const [videoData, setVideoData] = useState(Dataset);
+    const [selected, setSelected] = useState(null);
+    const { id } = useParams();
 
-//main section of page
-class Main extends Component {
-    state = {
-        videoData: Dataset,
-        selected: Dataset[0]
-    }
+    useEffect(() => {
+        const findVideoById = (id) => videoData.find(video => video.id === id);
 
-    handleClick = (id) => {
-        const selected = this.state.videoData.find(video => video.id === id)
-        this.setState({ selected: selected })
-    }
+        if (id) {
+            setSelected(findVideoById(id));
+        } else {
+            setSelected(videoData[0]);
+        }
+    }, [id, videoData]);
 
-    render() {
-        return (
-            <main className="main">
-                <section className="main__hero">
-                    <VideoPlayer
-                        videoData={this.state.selected} />
-                </section>
-                <section className="main__body">
-                    <div className="main__body-left">
-                        <VideoDetail
-                            selected={this.state.selected} />
-                        <Comment
-                            selected={this.state.selected} />
-                    </div>
-                    <div className="main__body-right">
-                        <VideoList
-                            videoData={this.state.videoData}
-                            selected={this.state.selected}
-                            handleClick={this.handleClick} />
-                    </div>
-                </section>
-            </main>
-        )
-    }
-}
+    const handleClick = (id) => {
+        setSelected(videoData.find(video => video.id === id));
+    };
 
-export default Main
+    return (
+        <main className="main">
+            <section className="main__hero">
+                {selected && <VideoPlayer videoData={selected} />}
+            </section>
+            <section className="main__body">
+                <div className="main__body-left">
+                    {selected && (
+                        <>
+                            <VideoDetail selected={selected} />
+                            <Comment selected={selected} />
+                        </>
+                    )}
+                </div>
+                <div className="main__body-right">
+                    <VideoList
+                        videoData={videoData}
+                        selected={selected}
+                        handleClick={handleClick}
+                    />
+                </div>
+            </section>
+        </main>
+    );
+};
+
+export default Main;

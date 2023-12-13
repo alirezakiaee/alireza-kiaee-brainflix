@@ -2,10 +2,11 @@ import Nav from './components/Nav/Nav';
 import Main from './components/Main/Main';
 import UploadPage from './pages/Upload/Upload';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 import './App.scss';
 
 function App() {
+  const { id } = useParams();
   return (
     <BrowserRouter>
       <header className="header">
