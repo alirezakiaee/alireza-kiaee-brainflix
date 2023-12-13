@@ -1,0 +1,32 @@
+@use '../../partials/colors' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/typographys' as *;
+@use '../../partials/spacings' as *;
+@use '../../partials/mixins' as *;
+
+.video-player {
+
+    &__wrapper {
+        width: 100%;
+        background-color: black;
+
+        @include desktop {
+            padding: 0 $max-space*3;
+        }
+    }
+
+    &__player {
+        display: block;
+        width: 100%;
+        max-height: 34rem;
+
+        @include tablet {
+            margin: auto;
+            width: 90%;
+        }
+
+        @include desktop {
+            width: 80%;
+        }
+    }
+}

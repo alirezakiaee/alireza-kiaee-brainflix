@@ -1,0 +1,84 @@
+@use '../../partials/colors' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/typographys' as *;
+@use '../../partials/spacings' as *;
+@use '../../partials/mixins' as *;
+
+.video-detail {
+
+    &__title {
+        margin-top: $medium-space;
+    }
+
+    &__detail {
+        border-bottom: $divider;
+        margin-top: $small-space;
+
+        @include tablet {
+            @include flex-row {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-top: $regular-space;
+            }
+        }
+    }
+
+    &__subtitle {
+        @include flex-row {
+            align-items: baseline;
+        }
+
+        margin-bottom: $medium-space;
+
+        @include tablet {
+            margin-bottom: $regular-space;
+        }
+    }
+
+    &__creator {
+        margin-right: $min-space;
+
+        @include tablet {
+            font-size: $normal-subheader-font;
+            font-weight: $weight-demi;
+        }
+    }
+
+    &__date {
+        color: $primary-neutral-color;
+    }
+
+    &__stats-wrapper {
+        @include flex-row {
+            align-items: center;
+        }
+
+        padding-bottom: $regular-space;
+
+    }
+
+    &__view-icon,
+    &__like-icon {
+        margin-right: $min-space;
+    }
+
+    &__view-num {
+        margin-right: $regular-space;
+    }
+
+    &__view-num,
+    &__like-num {
+        @include desktop {
+            margin-right: $medium-space;
+        }
+    }
+
+    &__text {
+        padding: $regular-space 0 $max-space;
+
+        @include tablet {
+            padding: $max-space 0 $max-space*1.6;
+            width: 75%;
+        }
+    }
+}

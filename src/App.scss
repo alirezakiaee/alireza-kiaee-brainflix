@@ -1,0 +1,56 @@
+@import './partials/mixins';
+@import './partials/typographys' ;
+@import './partials/colors';
+@import './partials/spacings';
+
+
+* {
+  font-family: $primary-font;
+  color: $primary-black;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: $mobile-header-font;
+  font-weight: $weight-bold;
+  line-height: $mobile-header-line-height;
+  margin: 0;
+
+  @include tablet {
+    font-size: $normal-header-font;
+    line-height: $normal-header-line-height;
+  }
+}
+
+h2 {
+  font-size: $mobile-sub-header-font;
+  font-weight: $weight-demi;
+  line-height: $mobile-sub-header-line-height;
+  margin: 0;
+
+  @include tablet {
+    font-size: $normal-small-header-font;
+    line-height: $normal-small-header-line-height;
+  }
+}
+
+h3 {
+  font-weight: $weight-demi;
+
+  @include tablet {
+    font-size: $normal-subheader-font;
+    line-height: $normal-sub-header-line-height;
+  }
+}
+
+p {
+  font-size: $mobile-body-font;
+  font-weight: $weight-regular;
+  line-height: $mobile-body-line-height;
+
+  @include tablet {
+    font-size: $normal-body-font;
+    line-height: $normal-body-line-height;
+  }
+}

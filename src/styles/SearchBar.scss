@@ -1,0 +1,75 @@
+@use '../../partials/colors' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/typographys' as *;
+@use '../../partials/spacings' as *;
+@use '../../partials/mixins' as *;
+
+.search-form {
+    position: relative; 
+    @include flex-row;
+    flex-wrap: wrap;
+
+    &__input-wrapper{
+        @include formfield;
+        border:none;
+        background: none;
+        padding:0;
+        margin-bottom: $min-space;
+        position: relative;
+        
+        @include tablet {
+            background:none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    &__search-icon {
+        position: absolute;
+        margin-left: $small-space;
+        bottom:50%;
+        transform: translateY(50%);
+    }
+    
+    &__input{
+        @include formfield;
+        margin-bottom: $min-space;
+        padding-left: $max-space;
+        
+        @include tablet {
+            margin: 0;
+            padding-left: $max-space;
+        }
+    }
+
+    &__submit-icon{
+        margin-right: $min-space;
+        vertical-align: sub;
+    }
+    
+    &__submit{
+        @include button;
+        margin: 0 $small-space $small-space 0;
+        width: auto;
+        flex-grow: 1;
+
+        @include tablet {
+            flex-grow: 0;
+            margin:0 $regular-space;
+        }
+    }
+
+    &__avatar-wrapper {
+        @include avatar;
+        margin-left: auto;
+
+        @include tablet {
+            margin: 0;
+        }
+    }
+
+    &__avatar {
+        height: 100%;
+    }
+
+}

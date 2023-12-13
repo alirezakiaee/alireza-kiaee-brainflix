@@ -1,0 +1,51 @@
+@use '../../partials/colors' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/typographys' as *;
+@use '../../partials/spacings' as *;
+@use '../../partials/mixins' as *;
+
+.comment {
+
+    &__card {
+        @include flex-row;
+        border-bottom: $divider;
+        margin-top: $medium-space;
+        padding-bottom: $regular-space;
+    }
+
+    &__avatar {
+        @include avatar;
+        margin-right: $small-space;
+    }
+
+    &__body {
+        @include flex-row {
+            flex-wrap: wrap;
+        }
+
+        width: 100%;
+    }
+
+    &__user {
+        font-weight: $weight-demi;
+
+    }
+
+    &__date {
+        margin-left: auto;
+        color: $primary-neutral-color;
+
+        @include tablet {
+            margin-left: $small-space;
+        }
+    }
+
+    &__text {
+        width: 100%;
+        margin-top: $min-space;
+
+        @include desktop {
+            margin-right: $medium-space;
+        }
+    }
+}
