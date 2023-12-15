@@ -1,6 +1,7 @@
 import React from "react";
 import './Upload.scss';
 import thumbnail from "../../assets/images/Upload-video-preview.jpg";
+import uploadIcon from "../../assets/icons/upload.svg"
 
 const Upload = () => {
   return (
@@ -37,7 +38,8 @@ const Upload = () => {
         </div>
       </form>
       <footer className="upload__action">
-        <button className="upload__button-publish">PUBLISH</button>
+        <button className="upload__button-publish"><img className="search-form__submit-icon" src={uploadIcon} alt="upload icon" />
+        PUBLISH</button>
         <button className="upload__link">CANCEL</button>
       </footer>
     </section>

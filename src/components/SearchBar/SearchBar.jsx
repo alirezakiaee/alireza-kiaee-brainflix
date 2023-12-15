@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import searchIcon from "../../assets/icons/Icon-search.svg"
-import uploadIcon from "../../assets/icons/Icon-upload.svg"
+import uploadIcon from "../../assets/icons/upload.svg"
 import profileImage from '../../assets/images/Mohan-muruge.jpg'
 
 import './SearchBar.scss'
