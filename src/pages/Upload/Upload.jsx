@@ -10,26 +10,26 @@ const Upload = () => {
       </header>
       <form className="upload__flex">
         <div>
-          <h4 className="upload__description">VIDEO THUMBNAIL</h4>
+          <h4 className="upload__label">VIDEO THUMBNAIL</h4>
           <img className="upload__image" src={thumbnail} alt="thumbnail" />
         </div>
         <div className="upload__flex-two">
-          <label htmlFor="title" className="upload__description">
+          <label htmlFor="title" className="upload__label">
             TITLE YOUR VIDEO
           </label>
           <input
             id="title"
-            className="upload__form-title"
+            className="upload__input"
             name="title"
             placeholder="Add a title to your video"
             autoComplete="off"
           />
-          <label htmlFor="description" className="upload__description">
+          <label htmlFor="description" className="upload__label">
             ADD A VIDEO DESCRIPTION
           </label>
           <textarea
             id="description"
-            className="upload__form-description"
+            className="upload__textarea"
             name="description"
             rows="10"
             placeholder="Add a description of your video"
