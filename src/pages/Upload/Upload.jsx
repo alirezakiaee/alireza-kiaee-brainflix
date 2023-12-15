@@ -9,11 +9,11 @@ const Upload = () => {
         <h1 className="upload__title">Upload Video</h1>
       </header>
       <form className="upload__flex">
-        <div>
+        <div className="upload__flex-two-left">
           <h4 className="upload__label">VIDEO THUMBNAIL</h4>
           <img className="upload__image" src={thumbnail} alt="thumbnail" />
         </div>
-        <div className="upload__flex-two">
+        <div className="upload__flex-two-right">
           <label htmlFor="title" className="upload__label">
             TITLE YOUR VIDEO
           </label>
@@ -36,9 +36,9 @@ const Upload = () => {
           ></textarea>
         </div>
       </form>
-      <footer className="upload__button-container">
+      <footer className="upload__action">
         <button className="upload__button-publish">PUBLISH</button>
-        <button className="upload__button-cancel">CANCEL</button>
+        <button className="upload__link">CANCEL</button>
       </footer>
     </section>
   );

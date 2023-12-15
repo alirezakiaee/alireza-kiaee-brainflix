@@ -123,7 +123,9 @@
         font-weight: $weight-demi;
         line-height: $mobile-label-line-height;
         color:$primary-color;
+        background-color: rgba(255, 255, 255, 0);
         margin: $regular-space auto;
+        border: none;
 
         @include tablet{
             margin: auto 0;
