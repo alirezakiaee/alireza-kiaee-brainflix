@@ -11,50 +11,48 @@ import './Main.scss';
 const Main = () => {
     const [videoData, setVideoData] = useState([]);
     const [selected, setSelected] = useState(null);
+    const [error, setError] = useState(null);
     const { id } = useParams();
-    const API_URL = "https://project-2-api.herokuapp.com";
-    const API_KEY = "85fec6e8-bb03-4e4c-ba10-2e96931855fd";
+    const API_URL = "http://localhost:8080/videos";
 
     useEffect(() => {
-        axios
-            .get(`${API_URL}/videos/?api_key=${API_KEY}`)
+        axios.get(API_URL)
             .then(response => {
                 setVideoData(response.data);
-                const defaultVideo = response.data[0].id
-                if (!id) {
-                    return axios.get(`${API_URL}/videos/${defaultVideo}?api_key=${API_KEY}`)
-                } else  {
-                     
-                    return axios.get(`${API_URL}/videos/${id}?api_key=${API_KEY}`)
-                }
+                // Set the default video
+                const defaultVideoId = id || response.data[0]?.id;
+                return axios.get(`${API_URL}/${defaultVideoId}`);
             })
-            .then((response) => {
+            .then(response => {
                 setSelected(response.data);
-                })
-                
-            .catch(error => console.error("Error fetching data:", error));
+            })
+            .catch(err => {
+                console.error("Error fetching data:", err);
+                setError(err);
+            });
     }, [id]);
 
-    const handleClick = (id) => {
-        setSelected(videoData.find(video => video.id === id));
+    const handleClick = (videoId) => {
+        setSelected(videoData.find(video => video.id === videoId));
     };
-    if (!selected && !videoData) {
-        return null
+
+    if (error) {
+        return <div>Error loading data</div>;
     }
-    console.log(selected);
+
+    if (!selected) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <main className="main">
             <section className="main__hero">
-                {selected && <VideoPlayer videoData={selected} />}
+                <VideoPlayer videoData={selected} />
             </section>
             <section className="main__body">
                 <div className="main__body-left">
-                    {selected && (
-                        <>
-                            <VideoDetail selected={selected} />
-                            <Comment selected={selected} />
-                        </>
-                    )}
+                    <VideoDetail selected={selected} />
+                    <Comment selected={selected} />
                 </div>
                 <div className="main__body-right">
                     <VideoList
