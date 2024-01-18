@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import './Upload.scss';
 import thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import uploadIcon from "../../assets/icons/upload.svg";
+
 
 const Upload = () => {
   const [formData, setFormData] = useState({
@@ -20,24 +22,13 @@ const Upload = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/videos/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        console.log('Video uploaded successfully');
-      } else {
-        console.error('Upload failed');
-      }
+      const response = await axios.post('http://localhost:8080/videos/', formData);
+      console.log('Video uploaded successfully', response.data);
+      alert('Video uploaded successfully');
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Upload failed', error);
     }
   };
-
   return (
     <section className="upload">
       <header className="upload__margin">

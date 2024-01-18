@@ -5,23 +5,25 @@ import VideoDetail from '../VideoDetail/VideoDetail';
 import Comment from '../Comment/Comment';
 import VideoList from '../VideoList/VideoList';
 import axios from 'axios';
-
 import './Main.scss';
+
 
 const Main = () => {
     const [videoData, setVideoData] = useState([]);
     const [selected, setSelected] = useState(null);
     const [error, setError] = useState(null);
     const { id } = useParams();
-    const API_URL = "http://localhost:8080/videos";
+    const API_URL = process.env.REACT_APP_API_URL
+    const ENDPOINT = process.env.REACT_APP_ENDPOINT
 
     useEffect(() => {
-        axios.get(API_URL)
+        axios.get(`${API_URL}/${ENDPOINT}`)
             .then(response => {
                 setVideoData(response.data);
                 // Set the default video
                 const defaultVideoId = id || response.data[0]?.id;
-                return axios.get(`${API_URL}/${defaultVideoId}`);
+                console.log(`${API_URL}/${ENDPOINT}/${defaultVideoId}`)
+                return axios.get(`${API_URL}/${ENDPOINT}/${defaultVideoId}`);
             })
             .then(response => {
                 setSelected(response.data);
@@ -30,7 +32,7 @@ const Main = () => {
                 console.error("Error fetching data:", err);
                 setError(err);
             });
-    }, [id]);
+    }, [id, API_URL, ENDPOINT]);
 
     const handleClick = (videoId) => {
         setSelected(videoData.find(video => video.id === videoId));
