@@ -23,7 +23,7 @@ const Upload = () => {
     event.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/videos/', formData);
-      console.log('Video uploaded successfully', response.data);
+      console.log('Video uploaded successfully');
       alert('Video uploaded successfully');
     } catch (error) {
       console.error('Upload failed', error);
