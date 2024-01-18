@@ -92,6 +92,7 @@ import './Upload.scss';
 import thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import uploadIcon from "../../assets/icons/upload.svg";
 
+
 const Upload = () => {
   const [formData, setFormData] = useState({
     title: '',
@@ -115,7 +116,6 @@ const Upload = () => {
       console.error('Upload failed', error);
     }
   };
-
   return (
     <section className="upload">
       <header className="upload__margin">
